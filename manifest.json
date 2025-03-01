@@ -3,14 +3,20 @@
   "name": "SecurePro Extension",
   "version": "1.0",
   "description": "A simple security tool for demonstration",
-  "browser_action": {
+  "action": {
     "default_popup": "index.html",
     "default_title": "SecurePro"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "permissions": ["identity", "offscreen"],
   "host_permissions": [
     "https://*.firebaseio.com/",
     "https://*.googleapis.com/"
   ],
-  "content_security_policy": "script-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com; object-src 'self'"
+  "content_security_policy": {
+    "script-src": ["'self'", "https://apis.google.com", "https://www.gstatic.com", "https://www.googleapis.com", "https://securetoken.googleapis.com"],
+    "object-src": "'self'"
+  }
 }
