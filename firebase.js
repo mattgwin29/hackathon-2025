@@ -25,6 +25,9 @@ document.getElementById("login-btn").addEventListener("click", () => {
             const user = result.user;
             document.getElementById("user-info").innerText = `Logged in as: ${user.displayName}`;
             fetchData(user.uid);
+            fetchSalt(user.uid);
+            fetchPepper(user.uid);
+            
         })
         .catch((error) => {
             console.error("Authentication error:", error);
@@ -37,5 +40,27 @@ function fetchData(userId) {
     onValue(colorRef, (snapshot) => {
         const color = snapshot.val();
         document.getElementById("fav-color").innerText = color ? color : "Not set";
+    });
+}
+
+
+// Fetch salt from database
+function fetchSalt(userId) {
+    const saltRef = ref(database, `users/${userId}/salt`);
+    onValue(saltRef, (snapshot) => {
+        const salt = snapshot.val();
+        console.log("Fetched salt:", salt);
+        document.getElementById("salt-value").innerText = salt ? salt : "No salt value found";
+    });
+}
+
+
+// Fetch pepper from database
+function fetchPepper(userId) {
+    const pepperRef = ref(database, `users/${userId}/pepper`);
+    onValue(pepperRef, (snapshot) => {
+        const pepper = snapshot.val();
+        console.log("Fetched pepper:", pepper);
+        document.getElementById("pepper-value").innerText = pepper ? pepper : "No salt value found";
     });
 }
