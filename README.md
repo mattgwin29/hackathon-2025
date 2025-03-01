@@ -1,41 +1,49 @@
-# Chrome-Extension-Base-Template
-This is a basic Chrome Extension base template for starting new projects off of initialized with a MIT license.
+# 3 Way authentication
 
-## Features
-- ..
-- ..
-- ..
+## Team
+- **Anas Al Darwashi** – [darwashi@udel.edu](mailto:darwashi@udel.edu)
+- **Jacob Whitman** – [jacobwhi@udel.edu](mailto:jacobwhi@udel.edu)
+- **Andrew Roberts** – [andrewzr@udel.edu](mailto:andrewzr@udel.edu)
+- **Matthew Gwin** – [mattgwin@udel.edu](mailto:mattgwin@udel.edu)
 
-## Author
-First Last
-- [Author Website]()
-- [Author Github]()
-- [Project Repository]()
+## Overview
+CyberFrat Password Manager is a secure and innovative tool designed to help you generate unique, secure passwords for your online accounts—without storing your original password. Inspired by the 2022 LastPass security breach, our solution addresses the risks of centralized password storage and weak master passwords, allowing you to use a single master password while ensuring that each website gets a distinct, strong password.
 
-## Requirements
-### Knowledge
-- HTML
-- CSS
-- Javascript
-- Chrome API
-### Tools
-- Google Chrome Browser
-- IDE or Text Editor of Your Choice
+## How to Use
 
-## Setup Instructions
-### For Developers
-1. Make a clone of this project, unzipped.
-2. Open Chrome Browser
-3. In a new or blank tab, type in "chrome://extensions/" (without the quotes of course) and click [Enter].
-4. At the top right corner of the page, **enable** "Developer Mode"
-5. Click the button on the page that says "Load Unpacked"
-6. Navigate to your unzipped project folder and select that and hit OK.
-7. You are now ready to start working on the extension! Just make sure you reload after each change you make to see the changes take place.
+1. **Download the Extension:**
+   - Clone the repository:
+     ```sh
+     git clone https://github.com/your-username/your-repo-name.git
+     ```
+   - Or download the ZIP file from [this link](https://github.com/your-username/your-repo-name/archive/refs/heads/main.zip).
 
-### For End Users
-1. ...
-2. ...
-3. ...
+2. **Install the Extension in Chrome:**
+   - Open Chrome and go to [`chrome://extensions/`](chrome://extensions/).
+   - Enable **Developer Mode** (toggle in the upper-right corner).
+   - Click **Load unpacked** and select the folder where you downloaded or extracted the extension.
 
-## License
-Please refer to LICENSE file.
+3. **Log In:**
+   - Open the extension and enter your credentials to set up your account.
+
+4. **Generate and Retrieve Your Password:**
+   - Visit any website and click on the extension.
+   - Enter your master password (the one you always use).
+   - Copy the generated output, which is your unique, secure password.
+   - When you return to the website, enter your master password again to retrieve the same password—**without us storing it**.
+
+
+## Backstory
+In 2022, the widely used LastPass password manager suffered a significant security breach. Attackers accessed encrypted customer vaults, and the strength of these vaults was reliant on the robustness of users' master passwords. This incident underscored the dangers of centralized storage and weak passwords. We built CyberFrat as a solution to allow users the convenience of a single master password while ensuring that each online account uses a different, securely generated password. This way, even if one website is compromised, your other accounts remain protected.
+
+## Future Plans
+- **Cross-Platform Support:** Develop an app and a web interface to provide seamless usability across different devices.
+- **Enhanced Features:** Continuously improve security and user experience based on feedback and emerging technologies.
+- **User-Centric Enhancements:** Integrate more customization options and additional security measures to meet diverse user needs.
+
+## Contributions and Feedback
+We welcome contributions, suggestions, and feedback! If you have any questions, issues, or ideas for improvement, please feel free to reach out or open an issue in our repository.
+
+---
+
+CyberFrat – Stay Secure, Stay Simple!
