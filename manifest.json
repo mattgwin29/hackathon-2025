@@ -7,5 +7,9 @@
     "default_popup": "index.html",
     "default_title": "SecurePro"
   },
-  "permissions": []
+  "permissions": ["identity"],
+  "host_permissions": [
+    "https://*.firebaseio.com/",
+    "https://*.googleapis.com/"
+  ]
 }
