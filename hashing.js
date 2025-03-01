@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 
 // TODO: Initialize Firebase 
 
@@ -6,7 +6,6 @@ const saltRounds = 10;
 const pepperRounds = 5;
 
 let userDatabase = {}; //will get it from firebase
-
 
 async function hashPassword(userId, plainPassword) {
   try {
@@ -26,10 +25,8 @@ async function hashPassword(userId, plainPassword) {
   }
 }
 
-
 async function verifyPassword(userId, plainPassword) {
   try {
-
     // TODO: find user
     const userData = userDatabase[userId]; 
 
