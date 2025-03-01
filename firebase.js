@@ -46,7 +46,7 @@ function fetchData(userId) {
 
 // Fetch salt from database
 function fetchSalt(userId) {
-    const saltRef = ref(database, `users/${userId}/salt`);
+    const saltRef = ref(database, `users/${userId}/${userWebsite}/salt`);
     onValue(saltRef, (snapshot) => {
         const salt = snapshot.val();
         console.log("Fetched salt:", salt);
@@ -57,7 +57,7 @@ function fetchSalt(userId) {
 
 // Fetch pepper from database
 function fetchPepper(userId) {
-    const pepperRef = ref(database, `users/${userId}/pepper`);
+    const pepperRef = ref(database, `users/${userId}/${userWebsite}/pepper`);
     onValue(pepperRef, (snapshot) => {
         const pepper = snapshot.val();
         console.log("Fetched pepper:", pepper);
