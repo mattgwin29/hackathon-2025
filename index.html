@@ -1,24 +1,29 @@
-<!--
-   index.html
-   Author:
-   Author URI: https://
-   Author Github URI: https://www.github.com/
-   Project Repository URI: https://github.com/
-   Description: The main UI for your Chrome Extension
-   License: MIT
--->
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-    <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
-    <title>DistractMeNot Chrome Extension</title>
-    <link href = "style.css" rel = "stylesheet" type = "text/css">
-  </head>
-  <body>
-
-    <script src = "scripts.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecurePro Extension</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="app-title">SecurePro</h1>
+    <p class="app-subtitle">Your Trusted Security Tool</p>
+    
+    <div class="input-group">
+      <label for="userInput">Enter Data:</label>
+      <input type="text" id="userInput" placeholder="Type here..." />
+    </div>
+    
+    <div class="button-group">
+      <button id="processBtn">Process</button>
+      <button id="signInBtn">Sign In</button>
+    </div>
+    
+    <div class="output" id="output"></div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
 </html>
