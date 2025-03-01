@@ -48,7 +48,7 @@ async function verifyPassword(userId, plainPassword) {
   }
 }
 
-//you can test it
+//you can test it now
 
 // (async () => {
 //   const userId = 'qdqdbqjdq'; 
