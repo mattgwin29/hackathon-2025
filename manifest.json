@@ -10,13 +10,21 @@
   },
   "permissions": [
     "tabs",     
-    "identity"  
+    "identity",
+    "activeTab"
   ],
   "host_permissions": ["<all_urls>"],
   "background": {
     "scripts": ["background.js"],
     "persistent": true
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
 "content_security_policy": 
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://apis.google.com https://cdnjs.cloudflare.com; object-src 'none';"
 }
