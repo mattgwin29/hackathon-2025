@@ -31,8 +31,6 @@ CyberFrat Password Manager is a secure and innovative tool designed to help you 
    - The secured password will be autofilled inside the password box.**without us storing it**.
 
 
-## Backstory
-In 2022, the widely used LastPass password manager suffered a significant security breach. Attackers accessed encrypted customer vaults, and the strength of these vaults was reliant on the robustness of users' master passwords. This incident underscored the dangers of centralized storage and weak passwords. We built CyberFrat as a solution to allow users the convenience of a single master password while ensuring that each online account uses a different, securely generated password. This way, even if one website is compromised, your other accounts remain protected.
 
 ## Future Plans
 - **Cross-Platform Support:** Develop an app and a web interface to provide seamless usability across different devices.
