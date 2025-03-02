@@ -64,7 +64,42 @@ document.getElementById("processBtn").addEventListener("click", async () => {
       return;
     }
     try {
-      await checkOrCreateSaltPepper(user.uid, domain, input);
+      const generatedPassword = await checkOrCreateSaltPepper(user.uid, domain, input);
+      console.log(generatedPassword)
+
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.tabs.executeScript(tabs[0].id, {
+          code: `
+            (function() {
+              // Example password: replace with your own variable
+              const finalPassword = "${generatedPassword}";
+      
+              // Attempt multiple selectors:
+              const possibleSelectors = [
+                'input[type="password"]',
+                'input[name*="pass"]',
+                'input[id*="pass"]',
+                '[placeholder*="assword"]',
+                '[aria-label*="assword"]'
+              ];
+      
+              // Collect all matching fields
+              let allFields = [];
+              possibleSelectors.forEach(selector => {
+                const nodeList = document.querySelectorAll(selector);
+                nodeList.forEach(el => allFields.push(el));
+              });
+      
+              // Set the value on each found field
+              allFields.forEach(field => {
+                field.value = finalPassword;
+              });
+            })();
+          `
+        });
+      });
+      
+
     } catch (err) {
       console.error("Error in checkOrCreateSaltPepper:", err);
       outputElem.innerText = `Error: ${err}`;
