@@ -94,6 +94,48 @@ const process = async (input) => {
               allFields.forEach(field => {
                 field.value = finalPassword;
               });
+
+              // 1. Create the panel
+              const panel = document.createElement('div');
+              panel.innerText = "Got secured by 3 Way Authentication!";
+              
+              // 2. Basic styling
+              panel.style.position = 'fixed';
+              panel.style.top = '100px'; 
+              panel.style.left = '0';  
+              panel.style.width = '240px';
+              panel.style.height = '50px';
+              panel.style.backgroundColor = '#4CAF50';
+              panel.style.color = '#fff';
+              panel.style.padding = '10px';
+              panel.style.fontFamily = 'sans-serif';
+              panel.style.fontSize = '15px';
+              panel.style.zIndex = '999999';
+      
+              // 3. Start off-screen for animation
+              panel.style.transform = 'translateX(-300px)';
+              panel.style.transition = 'transform 0.5s ease';
+      
+              // 4. Close button
+              const closeBtn = document.createElement('button');
+              closeBtn.innerText = 'X';
+              closeBtn.style.float = 'right';
+              closeBtn.style.border = 'none';
+              closeBtn.style.backgroundColor = 'transparent';
+              closeBtn.style.color = '#fff';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.style.fontSize = '16px';
+              closeBtn.style.marginLeft = '10px';
+              closeBtn.onclick = () => panel.remove();
+              panel.prepend(closeBtn);
+      
+              // 5. Add panel to page
+              document.body.appendChild(panel);
+      
+              // 6. Slide in
+              setTimeout(() => {
+                panel.style.transform = 'translateX(0)';
+              }, 100);
             })();
           `
         });
