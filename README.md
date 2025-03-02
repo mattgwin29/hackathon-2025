@@ -16,7 +16,6 @@ CyberFrat Password Manager is a secure and innovative tool designed to help you 
      ```sh
      git clone https://github.com/mattgwin29/hackathon-2025.git
      ```
-   - Or download the ZIP file from [this link](https://github.com/mattgwin29/hackathon-2025.git).
 
 2. **Install the Extension in Chrome:**
    - Open Chrome and go to [`chrome://extensions/`](chrome://extensions/).
@@ -27,10 +26,9 @@ CyberFrat Password Manager is a secure and innovative tool designed to help you 
    - Open the extension and log in using OAuth
 
 4. **Generate and Retrieve Your Password:**
-   - Visit any website and click on the extension.
+   - Visit any website with a login required.
    - Enter your master password (the one you always use).
-   - Copy the generated output, which is your unique, secure password.
-   - When you return to the website, enter your master password again to retrieve the same password—**without us storing it**.
+   - The secured password will be autofilled inside the password box.**without us storing it**.
 
 
 ## Backstory
