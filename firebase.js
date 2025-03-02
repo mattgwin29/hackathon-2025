@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+import { getDatabase, set, ref, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, setPersistence, browserLocalPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -49,26 +49,35 @@ document.getElementById("login-btn").addEventListener("click", (event) => {
 });
 
 // Sign in with Google
-document.getElementById("logout-btn").addEventListener("click", (event) => {
+/*document.getElementById("logout-btn").addEventListener("click", (event) => {
     event.preventDefault(); 
-    const auth2 = getAuth(app);
+    const auth2 = getAuth();
+    auth2.signOut()
     console.log("Signing out " + JSON.stringify(globaluser))
     signOut(auth2).then(() => {
         // Sign-out successful.
       }).catch((error) => {
         console.log("An error occurred signing out")
       });
-});
+});*/
 
-document.getElementById("salt-btn").addEventListener("click", (event) => {
-    const url = "https://www.instagram.com/";
+/*document.getElementById("salt-btn").addEventListener("click", (event) => {
+    //const url = "https://www.instagram.com/";
+    const url = document.getElementById("site").innerText;
     console.log("Salt clicked");
     //event.preventDefault(); 
     console.log(globaluser);
-    fetchSalt(globaluser, url);
+    //fetchSalt(globaluser.uid, url);
 
+    setSaltPepper(globaluser.uid, url, "XXXXXXXXXXXX", "YYYYYYYYYYYYYY")
 
-});
+    fetchSalt(globaluser.uid, url)
+});*/
+
+function querySeasoning(userWebsite){
+    setSaltPepper(globaluser.uid, userWebsite, "XXXXXXXXXXXX", "YYYYYYYYYYYYYY")
+    fetchSalt(globaluser.uid, userWebsite)
+}
 
 
 /*
@@ -81,13 +90,27 @@ function fetchData(userId) {
     });
 }*/
 
-
-function fetchSalt(userId, userWebsite) {
-    console.log("inside of fetch salt")
+function setSaltPepper(userId, userWebsite, salt, pepper) {
     if (!userWebsite) {
         console.error("userWebsite is not defined");
         return;
     }
+
+    set(ref(database, 'users/' + userId + '/' + userWebsite.replaceAll('.', '_').replace("https://", "")), {
+        "salt": salt,
+        "pepper" : pepper
+        
+    });
+}
+
+
+function fetchSalt(userId, userWebsite) {
+    if (!userWebsite) {
+        console.error("userWebsite is not defined");
+        return;
+    }
+    console.log(userWebsite)
+    userWebsite = userWebsite.replaceAll('.', '_').replace("https://", "")
     const saltRef = ref(database, `users/${userId}/${userWebsite}/salt`);
     onValue(saltRef, (snapshot) => {
         const salt = snapshot.val();
@@ -101,10 +124,53 @@ function fetchPepper(userId, userWebsite) {
         console.error("userWebsite is not defined");
         return;
     }
-    const pepperRef = ref(database, `users/${userId}/${userWebsite}/pepper`);
+    userWebsite = userWebsite.replaceAll('.', '_').replace("https://", "")
     onValue(pepperRef, (snapshot) => {
         const pepper = snapshot.val();
         console.log("Fetched pepper:", pepper);
         document.getElementById("pepper-value").innerText = pepper ? pepper : "No pepper value found";
+    });
+}
+
+/*************************************************** */
+
+// "Process" button click handler
+document.getElementById("processBtn").addEventListener("click", () => {
+    const input = document.getElementById("userInput").value.trim();
+    const outputElem = document.getElementById("output");
+  
+    if (input) {
+      // Example processing: Base64-encode the input
+      const encoded = btoa(input);
+      outputElem.innerText = `Processed (Base64): ${encoded}`;
+      outputElem.style.color = "#2f3e46";
+    } else {
+      outputElem.innerText = "Please enter valid input.";
+      outputElem.style.color = "red";
+    }
+  });
+  
+  // "Sign In" button click handler (placeholder)
+  document.getElementById("signInBtn").addEventListener("click", () => {
+    alert("Sign-In functionality not implemented yet!");
+  });
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    getCurrentTabUrl();
+});
+
+function getCurrentTabUrl() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        if (tabs.length === 0) {
+            console.error("No active tabs found");
+            return;
+        }
+        
+        const currentUrl = tabs[0].url;
+        console.log("Current URL:", currentUrl);
+        
+        // Update the HTML element with the current site URL
+        //document.getElementById("site").innerText = currentUrl;
+        querySeasoning(currentUrl)
     });
 }
