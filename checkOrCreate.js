@@ -1,7 +1,7 @@
 import { database } from "./firebase.js";
 import { ref, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 import { hashPassword } from "./hashing.js";
-import { ourHash } from "./hashing.js";
+import  "./hashing.js";
 import { hashpw } from "./bcrypt.js";
 
 
