@@ -6,8 +6,6 @@
 // Description: Handles all the webpage level activities (e.g. manipulating page data, etc.)
 // License: MIT
 
-const pwdInput = getPwdInput();
-
 function getPwdInput() {
     const allInputs = document.getElementsByTagName("input");
     
@@ -22,8 +20,12 @@ function getPwdInput() {
     return pwdInput;
 }
 
+// document.addEventListener("DOMContentLoaded", () => {
+    const pwdInput = getPwdInput();
+    pwdInput.addEventListener("blur", e => {
+        const userPwd = e.currentTarget.value;
+        console.log(`User entered password: ${userPwd}`);
 
-
-getPwdInput().addEventListener("blur", e => {
-    console.log(e.currentTarget.value);
-});
+        chrome.runtime.sendMessage({ message: "user_entered_password", value: userPwd });
+    })
+// })
