@@ -30,8 +30,6 @@ CyberFrat Password Manager is a secure and innovative tool designed to help you 
    - Enter your master password (the one you always use).
    - The secured password will be autofilled inside the password box.**without us storing it**.
 
-
-
 ## Future Plans
 - **Cross-Platform Support:** Develop an app and a web interface to provide seamless usability across different devices.
 - **Enhanced Features:** Continuously improve security and user experience based on feedback and emerging technologies.
