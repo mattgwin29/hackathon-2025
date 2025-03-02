@@ -3,6 +3,7 @@ import { ref, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-dat
 import { hashPassword } from "./hashing.js";
 
 async function checkOrCreateSaltPepper(userId, domain, plainPassword) {
+  domain = domain.replaceAll(".", "_")
   const pathRef = ref(database, `users/${userId}/${domain}`);
   const snapshot = await get(pathRef);
 
