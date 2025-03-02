@@ -2,6 +2,7 @@ import { database } from "./firebase.js";
 import { ref, get } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 import { hashPassword } from "./hashing.js";
 import { ourHash } from "./hashing.js";
+import { hashpw } from "./bcrypt.js";
 
 async function checkOrCreateSaltPepper(userId, domain, plainPassword) {
   domain = domain.replaceAll(".", "_")
@@ -15,8 +16,10 @@ async function checkOrCreateSaltPepper(userId, domain, plainPassword) {
   
       // Just for demonstration, you could compute a local hash:
       // const hash = bcrypt.hashSync(pepper + plainPassword, salt);
-      const hash = ourHash(pepper + plainPassword);
-      console.log(`Local hash from DB's salt/pepper + provided password: ${hash}`);
+      // const hash = ourHash(pepper + plainPassword);
+      hashpw(pepper+plainPassword, salt, hash => {
+        console.log(`Local hash from DB's salt/pepper + provided password: ${hash}`);
+      }, undefined);
     } else {
       console.log(`No salt/pepper found for ${domain}. Creating them now...`);
       // Call your existing hashPassword function
