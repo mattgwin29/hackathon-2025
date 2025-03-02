@@ -42,9 +42,9 @@ onAuthStateChanged(auth, (user) => {
   updateUI(user);
 });
 
-
-document.getElementById("processBtn").addEventListener("click", async () => {
-  const input = document.getElementById("userInput").value.trim();
+const process = async (input) => {
+  input = input.trim();
+  // const input = document.getElementById("userInput").value.trim();
   const outputElem = document.getElementById("output");
 
   if (!input) {
@@ -105,6 +105,12 @@ document.getElementById("processBtn").addEventListener("click", async () => {
       outputElem.innerText = `Error: ${err}`;
     }
   });
+}
+
+
+document.getElementById("processBtn").addEventListener("click", () => {
+  const input = document.getElementById("userInput").value;
+  process(input);
 });
 
 
@@ -135,5 +141,6 @@ function getCurrentTabDomain(callback) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if(message.message === "user_entered_password") {
     console.log(message.value);
+    process(message.value);
   }
 })

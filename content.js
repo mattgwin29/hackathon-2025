@@ -6,26 +6,33 @@
 // Description: Handles all the webpage level activities (e.g. manipulating page data, etc.)
 // License: MIT
 
-function getPwdInput() {
-    const allInputs = document.getElementsByTagName("input");
-    
-    let pwdInput;
-    for(let i = 0; i < allInputs.length; i++) {
-        if(allInputs[i].type.toLowerCase() === "password") {
-            pwdInput = allInputs[i];
-            break;
-        }
-    }
+function getPwdInputs() {
+    const possibleSelectors = [
+        'input[type="password"]',
+        'input[name*="pass"]',
+        'input[id*="pass"]',
+        '[placeholder*="assword"]',
+        '[aria-label*="assword"]'
+    ];
 
-    return pwdInput;
+    let allFields = [];
+    possibleSelectors.forEach(selector => {
+        const nodeList = document.querySelectorAll(selector);
+        nodeList.forEach(el => allFields.push(el));
+    });
+
+    return allFields;
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-    const pwdInput = getPwdInput();
-    pwdInput.addEventListener("blur", e => {
-        const userPwd = e.currentTarget.value;
-        console.log(`User entered password: ${userPwd}`);
 
-        chrome.runtime.sendMessage({ message: "user_entered_password", value: userPwd });
-    })
-// })
+const pwdInputs = getPwdInputs()[0];
+pwdInputs.addEventListener("blur", e => {
+    const userPwd = e.currentTarget.value;
+    console.log(`User entered password: ${userPwd}`);
+
+    sendPwd(userPwd);
+})
+
+function sendPwd(pwd) {
+    chrome.runtime.sendMessage({ message: "user_entered_password", value: pwd });
+}
