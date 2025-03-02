@@ -131,3 +131,9 @@ function getCurrentTabDomain(callback) {
     }
   });
 }
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if(message.message === "user_entered_password") {
+    console.log(message.value);
+  }
+})
