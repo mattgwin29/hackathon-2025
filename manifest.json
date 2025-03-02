@@ -26,3 +26,4 @@
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://apis.google.com https://cdnjs.cloudflare.com; object-src 'none';"
 }
 
+
