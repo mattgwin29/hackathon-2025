@@ -35,7 +35,7 @@ document.getElementById("processBtn").addEventListener("click", async () => {
   const input = document.getElementById("userInput").value.trim();
   const outputElem = document.getElementById("output");
 
-  // 1. Validate the input (password)
+  // 1. Validate that a password was provided
   if (!input) {
     outputElem.innerText = "Please enter a valid password.";
     return;

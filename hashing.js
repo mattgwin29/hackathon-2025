@@ -1,5 +1,6 @@
 import { auth, database } from "./firebase.js";
 import { ref, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+import { hashpw, gensalt } from "./bcrypt.js";
 
 console.log(auth, database)
 const saltRounds = 10;
@@ -10,24 +11,36 @@ export async function hashPassword(userId, website, plainPassword) {
       // const pepper = bcrypt.genSaltSync(saltRounds);
       // const hash = bcrypt.hashSync(pepper + plainPassword, salt);
 
-      const salt = genSeasoning();
+      // const salt = genSeasoning();
+      const salt = gensalt(10);
       const pepper = genSeasoning();
-      const hash = ourHash(pepper + plainPassword);
+      hashpw(pepper+plainPassword, salt, async hash => {
+        const dbPath = `users/${userId}/${website}`;
+  
+        await set(ref(database, dbPath), {
+          salt,
+          pepper
+        });
+    
+        console.log("Successfully stored salt & pepper in Firebase!");
+        console.log("Local hash (not stored in Firebase):", hash);
+      }, undefined);
+      // const hash = ourHash(pepper + plainPassword);
 
   
-      console.log("pepper:", pepper);
-      console.log("salt:", salt);
-      console.log("hash:", hash);
+      // console.log("pepper:", pepper);
+      // console.log("salt:", salt);
+      // console.log("hash:", hash);
   
-      const dbPath = `users/${userId}/${website}`;
+      // const dbPath = `users/${userId}/${website}`;
   
-      await set(ref(database, dbPath), {
-        salt,
-        pepper
-      });
+      // await set(ref(database, dbPath), {
+      //   salt,
+      //   pepper
+      // });
   
-      console.log("Successfully stored salt & pepper in Firebase!");
-      console.log("Local hash (not stored in Firebase):", hash);
+      // console.log("Successfully stored salt & pepper in Firebase!");
+      // console.log("Local hash (not stored in Firebase):", hash);
     } catch (error) {
       console.error("Error hashing/storing password:", error);
     }
@@ -35,7 +48,7 @@ export async function hashPassword(userId, website, plainPassword) {
 
 
   // temporary hashing and salting algorithms until we get bcrypt working
-function ourHash(str) {
+export function ourHash(str) {
   let hash = 0;
   for(let i = 0; i < str.length; i++) {
     hash = (hash << 5) - hash + str.charCodeAt(i);
