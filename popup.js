@@ -19,3 +19,21 @@ document.getElementById("processBtn").addEventListener("click", () => {
     alert("Sign-In functionality not implemented yet!");
   });
   
+  document.addEventListener("DOMContentLoaded", function () {
+    getCurrentTabUrl();
+});
+
+function getCurrentTabUrl() {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        if (tabs.length === 0) {
+            console.error("No active tabs found");
+            return;
+        }
+        
+        const currentUrl = tabs[0].url;
+        console.log("Current URL:", currentUrl);
+        
+        // Update the HTML element with the current site URL
+        document.getElementById("site").innerText = currentUrl;
+    });
+}
