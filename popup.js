@@ -1,33 +1,45 @@
 // popup.js
 import { auth, provider } from "./firebase.js";
-import { signInWithPopup } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import { signInWithPopup, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 import { checkOrCreateSaltPepper } from "./checkOrCreate.js";
 
-document.getElementById("login-btn").addEventListener("click", async (event) => {
+const loginBtn = document.getElementById("login-btn");
+const userInfo = document.getElementById("user-info");
+
+loginBtn.addEventListener("click", async (event) => {
   event.preventDefault();
 
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    console.log("User signed in:", user);
-    document.getElementById("user-info").innerText = `Logged in as: ${user.displayName}`;
-
-    // After sign-in, get the current tab domain
-    getCurrentTabDomain(async (domain) => {
-      if (!domain) {
-        console.error("No domain found from current tab!");
-        return;
-      }
-
-      // Provide a password to check or create salt/pepper
-      // In reality, you'd get this from user input, or generate it. This is just an example.
-      const plainPassword = "cybersecure";
-
-      await checkOrCreateSaltPepper(user.uid, domain, plainPassword);
-    });
-  } catch (error) {
-    console.error("Authentication error:", error);
+  if (auth.currentUser) {
+    try {
+      await signOut(auth);
+      console.log("User logged out.");
+      updateUI(null);
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  } else {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log("User signed in:", result.user);
+      updateUI(result.user); 
+    } catch (error) {
+      console.error("Authentication error:", error);
+    }
   }
+});
+
+function updateUI(user) {
+  if (user) {
+    loginBtn.innerText = "Logout";
+    userInfo.innerText = `Logged in as: ${user.displayName}`;
+  } else {
+    loginBtn.innerText = "Login";
+    userInfo.innerText = "Not logged in.";
+  }
+}
+
+onAuthStateChanged(auth, (user) => {
+  updateUI(user);
 });
 
 
@@ -35,20 +47,17 @@ document.getElementById("processBtn").addEventListener("click", async () => {
   const input = document.getElementById("userInput").value.trim();
   const outputElem = document.getElementById("output");
 
-  // 1. Validate that a password was provided
   if (!input) {
     outputElem.innerText = "Please enter a valid password.";
     return;
   }
 
-  // 2. Check if the user is logged in
   const user = auth.currentUser;
   if (!user) {
     outputElem.innerText = "You must be signed in first!";
     return;
   }
 
-  // 3. Retrieve current tab domain
   getCurrentTabDomain(async (domain) => {
     if (!domain) {
       outputElem.innerText = "Could not retrieve domain!";
@@ -56,7 +65,6 @@ document.getElementById("processBtn").addEventListener("click", async () => {
     }
     try {
       await checkOrCreateSaltPepper(user.uid, domain, input);
-      outputElem.innerText = `Salt & Pepper logic done for domain: ${domain}`;
     } catch (err) {
       console.error("Error in checkOrCreateSaltPepper:", err);
       outputElem.innerText = `Error: ${err}`;

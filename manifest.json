@@ -1,13 +1,18 @@
 {
   "manifest_version": 2,
   "key" : "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDzXavdPpsOggYivubM+uYcQ+rvUDdk3jyzXEIAUfb5vMPTH7yTxMls8yCX1I7Yqc+Dahy5TJ7kMETwL+5zjzjI3jNki2Qy9EVXbhenTk71Q9FwZcrqxyr0dXjcvntFpoK3D9OGPeGRSEFfJx8AbkadFnxnCfRJTwQC7M6LBwbgJwCO/g1bWxwmY4L6/VQsVgqEAUXA3USSHYpaghWn+Z+5xAiDYu3GcXCJuYCPas3In7bomf2w/mstI8zGcj2mFaW52ESc0V3rhEl4ag1YSCyynsG3nLzjo35TYACzoHpCr4/mOdR+owpuoVT+DJd7Af+OoKhTnlbfbzramgDF76vVAgMBAAECggEAKQSywPmaXNmhex29/PKU8lKoOGnGzGOAy6JTJYarH/Cm+OCygh167bgU2EJlSTNl3Hp4GOtHJKLWG72YbTXIlmKNOvcbjlMJlPDjX7mdKU2i8VTW3LdxD/70vhAE6vpjscMjHc80Q65wBj+rxADSOgveL+fHmsuMm4maTmiCyii0kuEAngGpjPAgGDkpzkHshDKdVFpCNP+IUHF1SseojTSEv1LZVQJgCMNk8ZYsotPzymV+Jalq3oQJjrx1EYzwnfjwIHV+IGId5Q1mJnwMZjJivvSwsVG/AWWDh+L+f+6AV1z+ZA3cYt9WA4f4+9h3uYqFK6SufcRNuecEJK4JCQKBgQD9ekq82R3Uj6lbLexqU9GCTfaH2OL/ORxbcxJ6v2HZHIbcOG7yB7pw8hAvBPYj2KGlsWmrjLEVvPEOl+xLECoDW12e4vkbdeQGorp6GiwPtlUNCGJPgFeGshydksoPeOY/v+mCn8FZ4KtKKR2IXbBjsadkU/KS9vtigFk0MYw6jwKBgQD1yZ7ile6tdKqOsYznQ3UIXtn9qeBBMXkEocZVyvPAwP9jLUBDUK7Q+4/4kcDcWEUcJX/BRCfejEQrXkPazpu4XWxeZ6A0+VoILD2dcVLhXyNCKjZPZe26GEg7jtFbGZSmvNU3MbTDxgGzz0d8anXpgH8c0+sf87KSFCb68DT1WwKBgQC0Uu6eYJsfH8CslAQPNGfkmlAbHomGZfutdzSbTFFw4iFyw1byKdtSBHLM8Gum3rNIq+jv2NwWCd83sY6xa+NnlfUJVpE/HuREcDnXKY1U9DKXXfKKelRKB6Xh146V6T1r9rxJaBtmNDXHQW64F2an1beu4SW9taTq00IipmkLMwKBgGKbuj/jsTcr6EWJXCNoP+rUyxZm8g6Vv5ypHr5Kx1Jc29k5TV/0Xb6APrmWGE8OpuNs8/1gz7IMikjv7784RudHq/OQFYlLROCkhy/ESGEc3zNrZhCiryaLGWezm7C16Zqfhdc3/PLSXNp73Y0/1QCSSe0R5HIUPl828JCakFSjAoGBAO++ehP+REFIHjlecUPZW5fI8T9scPY/B8SdgbiWFRFCyrh3MAflIwpJe+TFIK+sVBsGp8RvVZuvjQwK908IIrmnvOSDdDTVdkTtQYQQ694ikl882ofhdJHpd3UbfUgWufAjgmRYFoDNymiCZyZZTsnOsAbE0ix9q4nmuXQ5cnxv",
-  "name": "SecurePro Extension",
+  "name": "3 Way Authentication",
   "version": "1.0",
-  "description": "A simple security tool for demonstration",
+  "description": "CyberFrat Password Manager is a secure and innovative browser extension that generates unique, strong passwords for your online accounts—without storing your original password. Inspired by the 2022 LastPass security breach, CyberFrat uses a 3-way authentication method to enhance security, allowing users to retrieve the same password for a website using a single master password. This eliminates the risks of centralized password storage while ensuring strong, site-specific credentials.",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "SecurePro"
+    "default_title": "3FA",
+    "default_icon": "icons/logo48.png"
   },
+  "icons": {
+  "48": "icons/logo48.png",
+  "128": "icons/logo128.png"
+},
   "permissions": [
     "tabs",     
     "identity"  

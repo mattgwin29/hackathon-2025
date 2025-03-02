@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SecurePro Extension</title>
-  <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/bcryptjs@3.0.2/umd/index.js"></script> -->
-
+  <title>3 Way Authentication</title>
   <link rel="stylesheet" href="popup.css" />
   <script type="module" src="firebase.js"></script>
   <script type="module" src="hashing.js"></script>
@@ -13,8 +11,8 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="app-title">SecurePro</h1>
-    <p class="app-subtitle">Your Trusted Security Tool</p>
+    <h1 class="app-title">3 Way Authentication</h1>
+    <p class="app-subtitle">Your Trusted Password Generator</p>
     
     <div class="input-group">
       <label for="userInput">Enter Data:</label>
@@ -23,25 +21,15 @@
     
     <div class="button-group">
       <button id="processBtn">Process</button>
-      <button id="signInBtn">Sign In</button>
+      <button id="login-btn">Sign In</button>
     </div>
     
     <div class="output" id="output"></div>
-
-    <div>
-      <button id="login-btn">Login</button>
-      <button id="logout-btn">Logout</button>
-      <div id="fav-color"></div>
-    </div>
   </div>
   
 <div id = "user-info"> 
   
 </div>
-    <p>Site: <span id="site">-</span></p>
-    <p>Salt: <span id="salt-value">-</span></p>
-    <p>Pepper: <span id="pepper-value">-</span></p>
-
   <script type="module" src="popup.js"></script>
 </body>
 </html>
