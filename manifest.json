@@ -14,10 +14,10 @@
   "128": "icons/logo.png"
 },
   "permissions": [
-    "tabs",     
-    "identity"  
+    "tabs",
+    "identity",
+    "<all_urls>"
   ],
-  "host_permissions": ["<all_urls>"],
   "background": {
     "scripts": ["background.js"],
     "persistent": true
