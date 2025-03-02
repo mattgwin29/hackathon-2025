@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SecurePro Extension</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.js"></script>
   <link rel="stylesheet" href="popup.css" />
   <script type="module" src="firebase.js"></script>
+  <script type="module" src="hashing.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -38,6 +41,6 @@
     <p>Salt: <span id="salt-value">-</span></p>
     <p>Pepper: <span id="pepper-value">-</span></p>
 
-  <script src="popup.js"></script>
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

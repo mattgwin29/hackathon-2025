@@ -1,6 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
-import { getAuth, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+import { 
+    getAuth, signInWithPopup, GoogleAuthProvider, 
+    setPersistence, browserLocalPersistence, onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDryzykMjr0yxq8ju8229Ko2VRsIW2G08M",
@@ -31,7 +34,7 @@ onAuthStateChanged(auth, (user) => {
         console.log("No user logged in.");
     }
 });
-
+/*
 // Sign in with Google
 document.getElementById("login-btn").addEventListener("click", (event) => {
     event.preventDefault(); 
@@ -47,17 +50,8 @@ document.getElementById("login-btn").addEventListener("click", (event) => {
         });
 });
 
+*/
 /*
-// Fetch data from database
-function fetchData(userId) {
-    const colorRef = ref(database, `users/${userId}/favoriteColor`);
-    onValue(colorRef, (snapshot) => {
-        const color = snapshot.val();
-        document.getElementById("fav-color").innerText = color ? color : "Not set";
-    });
-}
-
-
 function fetchSalt(userId, userWebsite) {
     if (!userWebsite) {
         console.error("userWebsite is not defined");
@@ -84,3 +78,6 @@ function fetchPepper(userId, userWebsite) {
     });
 }
 */
+
+
+export { auth, database, provider };
